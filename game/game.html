@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>game</title>
+    <script src="game.js"></script>
+    <link rel="stylesheet" href="game.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="shortcut icon" href="Premium Vector _ Joystick game controller console joypad isolated vector.jpg" type="image/x-icon">
+</head>
+<body>
+    <div class="game">
+        <div class="human">
+            <img id = "images_human" class="images_human" src="question.jpg" alt="hello">
+            <h1 class="human_p">HUMAN</h1>
+            <div class="btns">
+                <button class="btn btn_rock" onclick="rock()">Rock</button>
+                <button class="btn btn_paper" onclick="paper()">Paper</button>
+                <button class="btn btn_scissor" onclick="scissor()">Scissor</button>
+            </div>
+        </div>
+        <div class="counter">
+            <!-- absolute -->
+            <div class="h1">
+                <h1>Counter</h1>
+            </div>
+                <div class="values">
+                    <p  id = "human_values">0</p>
+                    <p>:</p>
+                    <p  id="cpu_values">0</p>
+                </div>
+        </div>
+        <div class="middle">
+            <div id="msg" class="msg">
+                <h1 id="msg1">Start</h1>
+            </div>
+            <div class="vs">
+                <img src="vs.png" alt="vs">
+            </div>
+            <!-- absolute -->
+            <div class="btn_play">
+                <button class="btn play" onclick="check_value_of_human()">Play</button>
+            </div>
+        </div>
+        <div class="cpu">   
+            <img id="images_cpu" class="images images_cpu" src="question.jpg" alt="hello">
+            <h1 class="cpu_p">AI</h1>  
+            <div class="btns">
+                <button id="rock1_btn" class="btn btn_rock" onclick="rock1()">Rock</button>
+                <button id="scissor1_btn" class="btn btn_paper" onclick="paper1()">Paper</button>
+                <button id="paper1_btn" class="btn btn_scissor" onclick="scissor1()">Scissor</button>
+            </div>  
+        </div>
+    </div>
+    <div class="dialouge">
+        Hurry up
+    </div>  
+    <script src="game.js"></script>
+</body>
+</html>
