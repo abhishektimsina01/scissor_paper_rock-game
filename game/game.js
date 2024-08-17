@@ -16,7 +16,9 @@ function play(){
     //timer from here
     check(()=>{
         counter(() =>{
-            re_play();
+            re_play(() => {
+                reset_btn();
+            });
         });
     });
 }
@@ -87,49 +89,49 @@ function check(callback){
             document.getElementById('msg1').innerHTML = "Draw";
             cpu_flag = true;
             human_flag = true;
-            setTimeout(reset , 1000);
+            setTimeout(reset , 800);
         }
         else if(cpu_choice == "rock" && human_choice == "scissor"){
             document.getElementById('msg1').innerHTML = "AI won😔";
             cpu_flag = true;
             human_flag = false;
-            setTimeout(reset , 1000);
+            setTimeout(reset , 800);
         }
         else if(cpu_choice == "rock" && human_choice == "paper"){
             document.getElementById('msg1').innerHTML = "human won😎";
             cpu_flag = false;
             human_flag = true;
-            setTimeout(reset , 1000);
+            setTimeout(reset , 800);
         }
         else if(cpu_choice == "scissor" && human_choice == "paper"){
-            document.getElementById('msg1').innerHTML = "human won😎";
-            cpu_flag = false;
-            human_flag = true;
-            setTimeout(reset , 1000);
-        }
-        else if(cpu_choice == "scissor" && human_choice == "rock"){
             document.getElementById('msg1').innerHTML = "AI won😔";
             cpu_flag = true;
             human_flag = false;
-            setTimeout(reset , 1000);
+            setTimeout(reset , 800);
+        }
+        else if(cpu_choice == "scissor" && human_choice == "rock"){
+            document.getElementById('msg1').innerHTML = "human won😎";
+            cpu_flag = false;
+            human_flag = true;
+            setTimeout(reset , 800);
         }
         else if(cpu_choice == "paper" && human_choice == "scissor"){
             document.getElementById('msg1').innerHTML = "human won😎";
             cpu_flag = false;
             human_flag = true;
-            setTimeout(reset , 1000);
+            setTimeout(reset , 800);
         }
         else if(cpu_choice == "paper" && human_choice == "rock"){
             document.getElementById('msg1').innerHTML = "AI won😔";
             cpu_flag = true;
             human_flag = false;
-            setTimeout(reset , 1000);
+            setTimeout(reset , 800);
         }
         else{
             document.getElementById('msg1').innerHTML = "Something is wrong🤨"
         }
         callback();
-    }, 900)
+    }, 700)
 }
 
 function counter(callback){
@@ -157,20 +159,23 @@ function counter(callback){
 //     document.getElementById('cpu_values').innerHTML = cpu_value;
 // }
 
-function re_play(){
-    if(human_value == 3){
-            human_value = 0;
-            cpu_value = 0;
+function re_play(callback){
+    setTimeout(()=>{
+        if(human_value == 3){
+            // human_value = 0;
+            // cpu_value = 0;
             document.getElementById('msg1').innerHTML = "3!Human wins🥳";
-            setTimeout(reset, 1000);
+            callback();
         }
     else if(cpu_value == 3){
-            human_value = 0;
-            cpu_value = 0;
+            // human_value = 0;
+            // cpu_value = 0;
             document.getElementById('msg1').innerHTML = "3!AI wins😫";
-            setTimeout(reset, 1000);
-    }
+            callback();
+        }
+    },500)
 }
+
 
 function reset(){
     x =  document.getElementById('images_human');
@@ -180,9 +185,17 @@ function reset(){
     document.getElementById('msg1').innerHTML = "Start";
 }
 
+
 function reset_btn(){
-    human_value = 0;
-    cpu_value = 0;
-    document.getElementById('human_values').innerHTML = human_value;
-    document.getElementById('cpu_values').innerHTML = cpu_value;
+    setTimeout(() => {
+        human_value = 0;
+        cpu_value = 0;
+        document.getElementById('human_values').innerHTML = human_value;
+        document.getElementById('cpu_values').innerHTML = cpu_value;
+        x =  document.getElementById('images_human');
+        x.src = 'question.jpg';
+        z =  document.getElementById('images_cpu');
+        z.src = 'question.jpg';
+        document.getElementById('msg1').innerHTML = "Start";
+    }, 500);
 }
