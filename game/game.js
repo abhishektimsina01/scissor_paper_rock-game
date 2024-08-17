@@ -11,11 +11,10 @@ function check_value_of_human(){
 
 // for play
 function play(){
-    ask_cpu_choce();
-    check_value_of_cpu();
-    setTimeout(check, 700);
+    ask_cpu_choce(); //for choosing scissor, paper or rock for pc
+    check_value_of_cpu(); //for image according to the choosed option
+    check();
     counter();
-    change_counter_value();
     re_play();
 }
 
@@ -132,17 +131,22 @@ function counter(){
     }
     else if(human_flag == true && cpu_flag == false){
         human_value++;
+        document.getElementById('human_values').innerHTML = human_value;
+        document.getElementById('cpu_values').innerHTML = cpu_value;
     }
     else if(human_flag == false && cpu_flag == true){
         cpu_value++;
+        document.getElementById('human_values').innerHTML = human_value;
+        document.getElementById('cpu_values').innerHTML = cpu_value;
+        
     }
 }
 
 
-function change_counter_value(){
-    document.getElementById('human_values').innerHTML = human_value;
-    document.getElementById('cpu_values').innerHTML = cpu_value;
-}
+// function change_counter_value(){
+//     document.getElementById('human_values').innerHTML = human_value;
+//     document.getElementById('cpu_values').innerHTML = cpu_value;
+// }
 
 function re_play(){
     if(human_value == 3){
@@ -165,4 +169,11 @@ function reset(){
     z =  document.getElementById('images_cpu');
     z.src = 'question.jpg';
     document.getElementById('msg1').innerHTML = "Start";
+}
+
+function reset_btn(){
+    human_value = 0;
+    cpu_value = 0;
+    document.getElementById('human_values').innerHTML = human_value;
+    document.getElementById('cpu_values').innerHTML = cpu_value;
 }
