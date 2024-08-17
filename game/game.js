@@ -173,7 +173,7 @@ function reset(){
             x.src = 'question.jpg';
             z =  document.getElementById('images_cpu');
             z.src = 'question.jpg';
-            document.getElementById('msg1').innerHTML = "Start1";
+            document.getElementById('msg1').innerHTML = "Start";
 }
 
 
