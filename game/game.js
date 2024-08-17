@@ -13,9 +13,12 @@ function check_value_of_human(){
 function play(){
     ask_cpu_choce(); //for choosing scissor, paper or rock for pc
     check_value_of_cpu(); //for image according to the choosed option
-    check();
-    counter();
-    re_play();
+    //timer from here
+    check(()=>{
+        counter(() =>{
+            re_play();
+        });
+    });
 }
 
 
@@ -78,68 +81,74 @@ function paper(){
 
 
 //checking the condition
-function check(){
-    if(cpu_choice == human_choice){
-        document.getElementById('msg1').innerHTML = "Draw";
-        cpu_flag = true;
-        human_flag = true;
-        setTimeout(reset , 1000);
-    }
-    else if(cpu_choice == "rock" && human_choice == "scissor"){
-        document.getElementById('msg1').innerHTML = "AI won😔";
-        cpu_flag = true;
-        human_flag = false;
-        setTimeout(reset , 1000);
-    }
-    else if(cpu_choice == "rock" && human_choice == "paper"){
-        document.getElementById('msg1').innerHTML = "human won😎";
-        cpu_flag = false;
-        human_flag = true;
-        setTimeout(reset , 1000);
-    }
-    else if(cpu_choice == "scissor" && human_choice == "paper"){
-        document.getElementById('msg1').innerHTML = "human won😎";
-        cpu_flag = false;
-        human_flag = true;
-        setTimeout(reset , 1000);
-    }
-    else if(cpu_choice == "scissor" && human_choice == "rock"){
-        document.getElementById('msg1').innerHTML = "AI won😔";
-        cpu_flag = true;
-        human_flag = false;
-        setTimeout(reset , 1000);
-    }
-    else if(cpu_choice == "paper" && human_choice == "scissor"){
-        document.getElementById('msg1').innerHTML = "human won😎";
-        cpu_flag = false;
-        human_flag = true;
-        setTimeout(reset , 1000);
-    }
-    else if(cpu_choice == "paper" && human_choice == "rock"){
-        document.getElementById('msg1').innerHTML = "AI won😔";
-        cpu_flag = true;
-        human_flag = false;
-        setTimeout(reset , 1000);
-    }
-    else{
-        document.getElementById('msg1').innerHTML = "Something is wrong🤨"
-    }
+function check(callback){
+    setTimeout(() => {
+        if(cpu_choice == human_choice){
+            document.getElementById('msg1').innerHTML = "Draw";
+            cpu_flag = true;
+            human_flag = true;
+            setTimeout(reset , 1000);
+        }
+        else if(cpu_choice == "rock" && human_choice == "scissor"){
+            document.getElementById('msg1').innerHTML = "AI won😔";
+            cpu_flag = true;
+            human_flag = false;
+            setTimeout(reset , 1000);
+        }
+        else if(cpu_choice == "rock" && human_choice == "paper"){
+            document.getElementById('msg1').innerHTML = "human won😎";
+            cpu_flag = false;
+            human_flag = true;
+            setTimeout(reset , 1000);
+        }
+        else if(cpu_choice == "scissor" && human_choice == "paper"){
+            document.getElementById('msg1').innerHTML = "human won😎";
+            cpu_flag = false;
+            human_flag = true;
+            setTimeout(reset , 1000);
+        }
+        else if(cpu_choice == "scissor" && human_choice == "rock"){
+            document.getElementById('msg1').innerHTML = "AI won😔";
+            cpu_flag = true;
+            human_flag = false;
+            setTimeout(reset , 1000);
+        }
+        else if(cpu_choice == "paper" && human_choice == "scissor"){
+            document.getElementById('msg1').innerHTML = "human won😎";
+            cpu_flag = false;
+            human_flag = true;
+            setTimeout(reset , 1000);
+        }
+        else if(cpu_choice == "paper" && human_choice == "rock"){
+            document.getElementById('msg1').innerHTML = "AI won😔";
+            cpu_flag = true;
+            human_flag = false;
+            setTimeout(reset , 1000);
+        }
+        else{
+            document.getElementById('msg1').innerHTML = "Something is wrong🤨"
+        }
+        callback();
+    }, 900)
 }
 
-function counter(){
-    if(human_flag  == true && cpu_flag == true){
-    }
-    else if(human_flag == true && cpu_flag == false){
-        human_value++;
-        document.getElementById('human_values').innerHTML = human_value;
-        document.getElementById('cpu_values').innerHTML = cpu_value;
-    }
-    else if(human_flag == false && cpu_flag == true){
-        cpu_value++;
-        document.getElementById('human_values').innerHTML = human_value;
-        document.getElementById('cpu_values').innerHTML = cpu_value;
-        
-    }
+function counter(callback){
+    setTimeout(()=>{
+        if(human_flag  == true && cpu_flag == true){
+        }
+        else if(human_flag == true && cpu_flag == false){
+            human_value++;
+            document.getElementById('human_values').innerHTML = human_value;
+            document.getElementById('cpu_values').innerHTML = cpu_value;
+        }
+        else if(human_flag == false && cpu_flag == true){
+            cpu_value++;
+            document.getElementById('human_values').innerHTML = human_value;
+            document.getElementById('cpu_values').innerHTML = cpu_value;
+        }
+        callback();
+    },0)
+    
 }
 
 
