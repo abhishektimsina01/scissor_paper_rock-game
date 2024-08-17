@@ -13,13 +13,12 @@ function check_value_of_human(){
 function play(){
     ask_cpu_choce(); //for choosing scissor, paper or rock for pc
     check_value_of_cpu(); //for image according to the choosed option
+    check();
     //timer from here
-    check(()=>{
-        counter(() =>{
-            re_play(() => {
-                reset_btn();
-            });
-        });
+    counter(() =>{
+        re_play(()=>{
+            reset()
+        })
     });
 }
 
@@ -83,111 +82,102 @@ function paper(){
 
 
 //checking the condition
-function check(callback){
-    setTimeout(() => {
+function check(){
         if(cpu_choice == human_choice){
-            document.getElementById('msg1').innerHTML = "Draw";
             cpu_flag = true;
             human_flag = true;
-            setTimeout(reset , 800);
         }
         else if(cpu_choice == "rock" && human_choice == "scissor"){
-            document.getElementById('msg1').innerHTML = "AI won😔";
             cpu_flag = true;
             human_flag = false;
-            setTimeout(reset , 800);
         }
         else if(cpu_choice == "rock" && human_choice == "paper"){
-            document.getElementById('msg1').innerHTML = "human won😎";
             cpu_flag = false;
             human_flag = true;
-            setTimeout(reset , 800);
         }
         else if(cpu_choice == "scissor" && human_choice == "paper"){
-            document.getElementById('msg1').innerHTML = "AI won😔";
             cpu_flag = true;
             human_flag = false;
-            setTimeout(reset , 800);
         }
         else if(cpu_choice == "scissor" && human_choice == "rock"){
-            document.getElementById('msg1').innerHTML = "human won😎";
             cpu_flag = false;
             human_flag = true;
-            setTimeout(reset , 800);
         }
         else if(cpu_choice == "paper" && human_choice == "scissor"){
-            document.getElementById('msg1').innerHTML = "human won😎";
             cpu_flag = false;
             human_flag = true;
-            setTimeout(reset , 800);
         }
         else if(cpu_choice == "paper" && human_choice == "rock"){
-            document.getElementById('msg1').innerHTML = "AI won😔";
             cpu_flag = true;
             human_flag = false;
-            setTimeout(reset , 800);
         }
         else{
-            document.getElementById('msg1').innerHTML = "Something is wrong🤨"
         }
-        callback();
-    }, 700)
 }
 
 function counter(callback){
     setTimeout(()=>{
         if(human_flag  == true && cpu_flag == true){
+            document.getElementById('msg1').innerHTML = "Draw";
         }
         else if(human_flag == true && cpu_flag == false){
+            document.getElementById('msg1').innerHTML = "human won😎";
             human_value++;
             document.getElementById('human_values').innerHTML = human_value;
             document.getElementById('cpu_values').innerHTML = cpu_value;
+            console.log(human_value);
         }
         else if(human_flag == false && cpu_flag == true){
+            document.getElementById('msg1').innerHTML = "AI won😔";
             cpu_value++;
             document.getElementById('human_values').innerHTML = human_value;
             document.getElementById('cpu_values').innerHTML = cpu_value;
+            console.log(cpu_value);
         }
         callback();
-    },0)
+    },700)
     
 }
 
 
-// function change_counter_value(){
-//     document.getElementById('human_values').innerHTML = human_value;
-//     document.getElementById('cpu_values').innerHTML = cpu_value;
-// }
-
 function re_play(callback){
-    setTimeout(()=>{
+    
         if(human_value == 3){
-            // human_value = 0;
-            // cpu_value = 0;
+            human_value = 0;
+            cpu_value = 0;
+            setTimeout(()=>{
+            document.getElementById('human_values').innerHTML = human_value;
+            document.getElementById('cpu_values').innerHTML = cpu_value;
             document.getElementById('msg1').innerHTML = "3!Human wins🥳";
-            callback();
+            },700);
         }
-    else if(cpu_value == 3){
-            // human_value = 0;
-            // cpu_value = 0;
+        else if(cpu_value == 3){
+            human_value = 0;
+            cpu_value = 0;
+            setTimeout(()=>{
+            document.getElementById('human_values').innerHTML = human_value;
+            document.getElementById('cpu_values').innerHTML = cpu_value;
             document.getElementById('msg1').innerHTML = "3!AI wins😫";
-            callback();
+            },700);
         }
-    },500)
+        else{
+            setTimeout(()=>{
+                callback();
+            },700);
+        }
 }
 
 
 function reset(){
-    x =  document.getElementById('images_human');
-    x.src = 'question.jpg';
-    z =  document.getElementById('images_cpu');
-    z.src = 'question.jpg';
-    document.getElementById('msg1').innerHTML = "Start";
+            x =  document.getElementById('images_human');
+            x.src = 'question.jpg';
+            z =  document.getElementById('images_cpu');
+            z.src = 'question.jpg';
+            document.getElementById('msg1').innerHTML = "Start1";
 }
 
 
 function reset_btn(){
-    setTimeout(() => {
         human_value = 0;
         cpu_value = 0;
         document.getElementById('human_values').innerHTML = human_value;
@@ -197,5 +187,4 @@ function reset_btn(){
         z =  document.getElementById('images_cpu');
         z.src = 'question.jpg';
         document.getElementById('msg1').innerHTML = "Start";
-    }, 500);
 }
