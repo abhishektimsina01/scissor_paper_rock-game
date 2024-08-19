@@ -143,8 +143,6 @@ function counter(callback){
 function re_play(callback){
     
         if(human_value == 3){
-            human_value = 0;
-            cpu_value = 0;
             setTimeout(()=>{
             document.getElementById('human_values').innerHTML = human_value;
             document.getElementById('cpu_values').innerHTML = cpu_value;
@@ -152,8 +150,6 @@ function re_play(callback){
             },700);
         }
         else if(cpu_value == 3){
-            human_value = 0;
-            cpu_value = 0;
             setTimeout(()=>{
             document.getElementById('human_values').innerHTML = human_value;
             document.getElementById('cpu_values').innerHTML = cpu_value;
